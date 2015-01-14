@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += qml quick opengl
 
 QT       -= gui
 
@@ -15,7 +15,11 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    meshquick.cpp
 
 HEADERS += \
     meshquick.h
+
+RESOURCES += \
+    3dquickrc.qrc
