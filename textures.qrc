@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>media/test.png</file>
+        <file alias="brick.jpg">media/brick.jpg</file>
+        <file>media/SpiderTex.jpg</file>
+        <file>media/wal67ar_small.jpg</file>
+        <file>media/wal69ar_small.jpg</file>
+        <file>media/drkwood2.jpg</file>
+        <file>media/engineflare1.jpg</file>
+        <file>media/cube.png</file>
+    </qresource>
+</RCC>

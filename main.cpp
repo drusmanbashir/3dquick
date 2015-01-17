@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<MeshQuick>("OpenGLMesh",1,0,"MeshQ");
     QQuickView view;
     view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.setsource(QUrl("qrc:///main.qml"));
+    view.setSource(QUrl("qrc:///main.qml"));
     view.show();
 
     return a.exec();
