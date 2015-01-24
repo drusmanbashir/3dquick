@@ -1,2 +1,6 @@
-<RCC/>
-
+<RCC>
+    <qresource prefix="/models">
+        <file alias="cube">media/cube.3ds</file>
+        <file alias="cube.png">media/cube.png</file>
+    </qresource>
+</RCC>

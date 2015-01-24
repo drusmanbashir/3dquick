@@ -1,7 +1,9 @@
 
 #include<assert.h>
 #include "ubMesh.h"
-
+#include <QDebug>
+#include <QFileInfo>
+#include <QByteArray>
 Mesh::MeshEntry::MeshEntry()
 {
     VB = INVALID_OGL_VALUE;
@@ -60,21 +62,30 @@ void Mesh::Clear()
 }
 
 
-bool Mesh::LoadMesh(const std::string& Filename)
+bool Mesh::LoadMesh(const QString& Filename)
 {
+    QFile names(Filename);
+    names.open(QIODevice::ReadOnly);
+    QByteArray rawData;
+
+    rawData = names.readAll();
+    names.close();
+    int size = rawData.size();
+    std::string finalName = names.fileName().toStdString();
     // Release the previously loaded mesh (if it exists)
     Clear();
 
     bool Ret = false;
     Assimp::Importer Importer;
 
-    const aiScene* pScene = Importer.ReadFile(Filename.c_str(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs);
+//    const aiScene* pScene = Importer.ReadFile(finalName.c_str(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs);
+    const aiScene* pScene = Importer.ReadFileFromMemory(rawData.constData(), size, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs);
 
     if (pScene) {
-        Ret = InitFromScene(pScene, Filename);
+        Ret = InitFromScene(pScene, finalName);
     }
     else {
-        printf("Error parsing '%s': '%s'\n", Filename.c_str(), Importer.GetErrorString());
+        printf("Error parsing '%s': '%s'\n", finalName.c_str(), Importer.GetErrorString());
     }
 
     return Ret;

@@ -4,14 +4,17 @@
 
 #include <map>
 #include <vector>
+#include "ogldev_util.h"
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>       // Output data structure
 #include <assimp/postprocess.h> // Post processing flags
 
-#include "ogldev_util.h"
 #include "ogldev_math_3d.h"
 #include "ogldev_texture.h"
 #include <QOpenGLFunctions>
+#include <QString>
+#include <QFile>
+#include <QDebug>
 #include <include/lightingtechnique.h>
 #include <render_callbacks.h>
 struct idCheck{
@@ -48,7 +51,7 @@ public:
 
     ~Mesh();
 
-    bool LoadMesh(const std::string& Filename);
+    bool LoadMesh(const QString& Filename);
 
     void Render(IRenderCallbacks* pRenderCallbacks);
     void Render(unsigned int DrawIndex, unsigned int PrimID);

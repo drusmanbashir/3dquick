@@ -93,12 +93,12 @@ void MeshQuick::setAxis(QVector2D newAxis){
             window()->update();
     }
 }
-MeshRenderer::MeshRenderer(): m_lightingEffect(0),m_pickingEffect(0), m_pickingTexture(0)
+MeshRenderer::MeshRenderer(): m_lightingEffect(0)
 
 {
 
 
-    m_scale=QVector3D(.1,.1,.1);
+    m_scale=QVector3D(1,1,1);
     m_fAngle = 0;
     m_fScale = 1;
     m_pGameCamera = NULL;
@@ -115,7 +115,8 @@ MeshRenderer::MeshRenderer(): m_lightingEffect(0),m_pickingEffect(0), m_pickingT
     m_persProjInfo.Width = (float)(400);
     m_persProjInfo.zNear = 1;
     m_persProjInfo.zFar = 100.0f;
-    m_persProjInfo.Aspect = qreal(float(400))/qreal(float(400) ? float(400) : 1);
+    m_persProjInfo.Aspect = 1;
+//    m_persProjInfo.Aspect = qreal(float(400))/qreal(float(400) ? float(400) : 1);
 
 
 }
@@ -140,7 +141,8 @@ void MeshRenderer::initialize(){
     lightWVP = glGetUniformLocation(lightProgID, "gWVP");
     m_pMesh = new Mesh();
 
-    if (!m_pMesh->LoadMesh(spiderFile))
+//    if (!m_pMesh->LoadMesh(spiderFile))
+    if (!m_pMesh->LoadMesh(":/models/cube"))
 {
         qDebug()<<"No Mesh";
 //            close();
@@ -151,21 +153,21 @@ void MeshRenderer::initialize(){
 }
 
 
-void MeshRenderer::PickingPhase()
-{
+//void MeshRenderer::PickingPhase()
+//{
 
-    glClearColor(0,1,0,1);
-//    p.Scale(QVector3D(.1,.1,.1));
-    m_pickingTexture->EnableWriting();
+//    glClearColor(0,1,0,1);
+////    p.Scale(QVector3D(.1,.1,.1));
+//    m_pickingTexture->EnableWriting();
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glUseProgram(pickProgID);
-    glUniformMatrix4fv(pickWVP,1, GL_FALSE, p.GetWVPTrans().data());
-    m_pMesh->Render(m_pickingEffect);
+//    glUseProgram(pickProgID);
+//    glUniformMatrix4fv(pickWVP,1, GL_FALSE, p.GetWVPTrans().data());
+//    m_pMesh->Render(m_pickingEffect);
 
-//    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, defaultFramebufferObject());
-}
+////    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, defaultFramebufferObject());
+//}
 
 
 void MeshRenderer::RenderPhase()
@@ -229,8 +231,8 @@ MeshRenderer::~MeshRenderer(){
     delete m_pMesh;
     delete m_pGameCamera;
     delete m_lightingEffect;
-    delete m_pickingEffect;
-    delete m_pickingTexture;
+//    delete m_pickingEffect;
+//    delete m_pickingTexture;
 
 }
 

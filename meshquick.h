@@ -9,8 +9,8 @@
 #include <include/utils.h>
 #include "include/lightingtechnique.h"
 #include <include/pipeline.h>
-#include "include/picking_technique.h"
-#include "include/picking_texture.h"
+//#include "include/picking_technique.h"
+//#include "include/picking_texture.h"
 #include "include/simple_color_technique.h"
 #include <QtGui/QOpenGLFunctions>
 //#include "include/picking_technique.h"
@@ -29,7 +29,7 @@ public:
     void setRotation(QVector2D ax, float angl);
 
     void initialize();
-    void PickingPhase();
+//    void PickingPhase();
     void RenderPhase();
 
 public slots:
@@ -49,12 +49,12 @@ private:
  //   Texture *m_pTexture;
 
     LightingTechnique* m_lightingEffect;
-    PickingTechnique *m_pickingEffect;
+//    PickingTechnique *m_pickingEffect;
     Camera* m_pGameCamera;
     DirectionalLight m_directionalLight;
     Mesh* m_pMesh;
-    PickingTexture *m_pickingTexture;
-
+//    PickingTexture *m_pickingTexture;
+// PICKING HAS BEEN DISABLE AS ANDROID NOT LETTING ME use ReadBuffer and FBO opengl calls
     QVector3D m_worldPos[1];
 
     PersProjInfo m_persProjInfo;
