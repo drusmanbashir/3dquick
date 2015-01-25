@@ -62,16 +62,18 @@ RESOURCES += \
 #target.path = $$[QT_INSTALL_EXAMPLES]/quick/scenegraph/textureinsgnode
 INSTALLS += target
 
-linux|win32: LIBS += -lassimp
-
+linux|android|win32 {
+        -L/home/ubashir/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
+ LIBS += -lassimp
+}
 QT += androidextras
 #ASSIMP_PATH = /home/ubashir/programs/assimp/assimp-3.1.1
-#android {
-#INCLUDEPATH += /home/ubashir/programs/android-toolchain/user/include
-#LIBS +=\
-#        -L/home/ubashir/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
-#        -lassimp
-#}
+android {
+INCLUDEPATH += /home/ubashir/programs/android-toolchain/user/include
+LIBS +=\
+        -L/home/ubashir/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
+        -lassimp
+}
 
 macx {
     ASSIMP_PATH = /usr/local/Cellar/assimp/3.1.1
@@ -85,8 +87,7 @@ macx {
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \
-        $$PWD/../../programs/assimp/assimp-3.1.1/libs/armeabi-v7a/libassimp.so
-     $$PWD/../../programs/assimp/assimp-3.1.1/libs/armeabi-v7a/libassimp.so.3
+        $$PWD/android/libs/libassimp.so
 }
 
 DISTFILES += \
