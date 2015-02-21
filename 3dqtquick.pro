@@ -16,7 +16,7 @@ TEMPLATE = app
 
 INCLUDEPATH += \
             include \
-            /home/ubashir/programs/assimp/assimp-3.1.1/include \
+            /usr/local/include \
             source\
 
 HEADERS += \
@@ -63,16 +63,19 @@ RESOURCES += \
 INSTALLS += target
 
 linux|android|win32 {
-        -L/home/ubashir/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
- LIBS += -lassimp
+
+#        -L/home/usman/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
+ LIBS += -L/usr/local/lib \
+        -lassimp \
 }
-QT += androidextras
-#ASSIMP_PATH = /home/ubashir/programs/assimp/assimp-3.1.1
+
+#ASSIMP_PATH = /home/usman/programs/assimp/assimp-3.1.1
 android {
-INCLUDEPATH += /home/ubashir/programs/android-toolchain/user/include
+INCLUDEPATH += /home/usman/programs/android-toolchain/user/include
 LIBS +=\
-        -L/home/ubashir/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/
-        -lassimp
+        -L/usr/local/lib -lassimp \
+#        -L/home/usman/programs/assimp/assimp-3.1.1/libs/armeabi-v7a/ \
+
 }
 
 macx {
